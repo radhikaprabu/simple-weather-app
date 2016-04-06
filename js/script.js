@@ -21,17 +21,19 @@ $(function () {
 	//Event handler to get the data
 	$('form').on('submit', function (e) {
 		e.preventDefault();
-		$('#info').remove();
+		$('#weather').remove();
 		getWeatherData($('#zip').val());
 	});
 	
 	//Function to add weather data to the page
 	function addNewItem(data){
 		var item = '';
-		item += '<h3>The weather info for' + ' ' + data.name + '</h3>';
-		item += '<p>Current Temperature: ' + convertTemp(data.main.temp) + '</p>';
-		item += '<p>' + data.weather[0].description + '</p>';
-		$('#form').append('<div id = info>' + item + '</div>');
+		item += '<h3>Weather info for' + ' ' + data.name + '</h3>';
+		item += '<p>Current Temperature: ' + convertTemp(data.main.temp) + 'F</p>';
+		item += '<p>Current Conditions: ' + data.weather[0].description + '</p>';
+		item += '<p>Min Temperature: ' + convertTemp(data.main.temp_min) + '</p>';
+		item += '<p>Max Temperature: ' + convertTemp(data.main.temp_max) + '</p>';
+		$('#form').append('<div id = weather>' + item + '</div>');
 	}
 	
 	//Function to convert Temperature
